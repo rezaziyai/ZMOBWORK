@@ -29,9 +29,8 @@ const catalog={
  brand.onchange=()=>fillModels(brand.value); fillModels(brand.value);
 }
 function fillModels(brand){
- const select=$('model'); select.innerHTML='';
- (catalog[brand]||[]).forEach((m,i)=>{const o=document.createElement('option');o.value=m;o.textContent=m;select.appendChild(o);});
- if(!select.options.length){select.innerHTML='<option value="">مدلی موجود نیست</option>'}
+ const list=$("modelList"); if(!list)return; list.innerHTML='';
+ (catalog[brand]||[]).forEach(m=>{const o=document.createElement('option');o.value=m;list.appendChild(o);});
 }
 function save(){localStorage.setItem('zmob_repairs',JSON.stringify(repairs));localStorage.setItem('zmob_notes',JSON.stringify(notes));localStorage.setItem('zmob_next',nextCode)}
 function money(n){return Number(n||0).toLocaleString('fa-IR')+' تومان'}
