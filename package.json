@@ -1,0 +1,10 @@
+{
+  "name": "zmobwork",
+  "version": "0.1.0",
+  "description": "مدیریت تعمیرات موبایل ZMOBWORK",
+  "main": "main.js",
+  "scripts": {"start": "electron ."},
+  "author": "ZMOBWORK",
+  "license": "MIT",
+  "devDependencies": {"electron": "^38.1.0"}
+}
