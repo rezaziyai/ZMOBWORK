@@ -16,3 +16,12 @@
 .customer-card{max-width:680px}.customer-card .modal-head{margin-bottom:14px}.customer-card .modal-head h2{margin:0 0 3px}.customer-card .modal-head small{color:#71849a}.history-item{display:flex;justify-content:space-between;gap:20px;padding:13px 4px;border-top:1px solid #e5ebf1}.history-item>div{display:flex;align-items:center;gap:10px}.history-item span{color:#304a64}.history-item small{display:block;color:#7b8ea2;font-size:11px}.history-item strong{white-space:nowrap}
 
 .delivery-summary{display:flex;flex-direction:column;gap:8px;background:#f7fbff;border:1px solid #dce7f1;border-radius:10px;padding:14px;margin:10px 0 16px}.delivery-summary span{color:#60758a;font-size:13px}.delivery-summary strong{color:#167cf0;font-size:18px}.delivery-question{color:#52677d;font-size:13px}.delivery-actions{display:flex;gap:9px;justify-content:flex-end}.delivery-card{max-width:500px}@media(max-width:600px){.delivery-actions{flex-direction:column}.delivery-actions button{width:100%}}
+
+/* Modal base: centered overlay */
+.modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(13,29,49,.48);backdrop-filter:blur(3px)}
+.modal.hidden{display:none}
+.modal-card{width:min(680px,calc(100vw - 48px));max-height:calc(100vh - 48px);overflow:auto;background:#fff;border:1px solid #d5e0eb;border-radius:16px;padding:22px;box-shadow:0 20px 60px rgba(15,35,58,.25)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}.modal-head h2{margin:0;font-size:20px;color:#152b45}
+.modal-close{width:34px;height:34px;border-radius:9px;background:#f1f5f8;color:#52677d;font-size:21px;line-height:1}.modal-close:hover{background:#e6edf3;color:#162d47}
+.delivery-card{width:min(500px,calc(100vw - 48px));text-align:right}.delivery-actions{display:flex;gap:10px;justify-content:flex-end}.delivery-actions button{min-width:145px}
+@media(max-width:600px){.modal{padding:14px}.modal-card{width:calc(100vw - 28px);max-height:calc(100vh - 28px);padding:16px}.delivery-actions{flex-direction:column}.delivery-actions button{width:100%}}
