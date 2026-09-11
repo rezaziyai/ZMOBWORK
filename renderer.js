@@ -62,7 +62,7 @@ function updateStats(){
  $('customerCount').textContent=new Set(repairs.map(x=>x.phone)).size;
  const n=repairs.filter(x=>(x.followups||0)>0&&x.status!=='delivered').length; $('attentionCount').textContent=n+' مورد';
 }
-function row(x){const next={repair:'done',done:'ready',ready:'delivered'}[x.status];const action={repair:'تعمیر شد',done:'آماده تحویل',ready:'تحویل شد'}[x.status];return `<div class="row"><b>#${x.code}</b><span>${x.name}</span><span>${x.brand} • ${x.model}</span><span>${x.problem}</span><span class="badge ${x.status}">${statusText[x.status]}</span><span>${next?`<button class="row-action" data-code="${x.code}" data-next="${next}">${action}</button>`:'✓'}</span></div>`}
+function row(x){const order=['repair','done','ready','delivered'];const i=order.indexOf(x.status);const next=order[i+1],prev=order[i-1];const action=next?statusText[next]:'';return `<div class="row"><b>#${x.code}</b><span>${x.name}</span><span>${x.brand} • ${x.model}</span><span>${x.problem}</span><span class="badge ${x.status}">${statusText[x.status]}</span><span class="row-actions">${prev?`<button class="row-action back" data-code="${x.code}" data-next="${prev}">‹</button>`:''}${next?`<button class="row-action" data-code="${x.code}" data-next="${next}">${action}</button>`:''}</span></div>`}
 function renderRecent(){ $('recent').innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.slice(-7).reverse().map(row).join('') }
 function renderLists(){
  const render=(id,status)=>$(id).innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.filter(x=>x.status===status).map(row).join('');
