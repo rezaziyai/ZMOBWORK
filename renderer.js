@@ -53,7 +53,7 @@ function fillModels(brand){
  const list=$("modelList"); if(!list)return; list.innerHTML='';
  (catalog[brand]||[]).forEach(m=>{const o=document.createElement('option');o.value=m;list.appendChild(o);});
 }
-function save(){localStorage.setItem('zmob_repairs',JSON.stringify(repairs));localStorage.setItem('zmob_notes',JSON.stringify(notes));localStorage.setItem('zmob_next',nextCode)}
+function save(){localStorage.setItem('zmob_repairs',JSON.stringify(repairs));localStorage.setItem('zmob_notes',JSON.stringify(notes));localStorage.setItem('zmob_next',nextCode);if(window.DriveSync)DriveSync.markDirty()}
 function seedDemoRepairs(){
  if(localStorage.getItem('zmob_demo_seeded')==='1')return;
  const demos=[
@@ -124,3 +124,12 @@ function showRepairDetails(code){const r=repairs.find(x=>String(x.code)===String
 function closeDetail(){$('repairDetailModal').classList.add('hidden');$('repairDetailModal').dataset.code=''}
 function addDetailFollowup(){const c=$('repairDetailModal').dataset.code;if(!c)return;const r=repairs.find(x=>String(x.code)===String(c));if(!r)return;const v=$('detailFollowupInput').value.trim();if(!v)return;r.followupNotes=Array.isArray(r.followupNotes)?r.followupNotes:[];r.followupNotes.push({text:v,time:new Date().toISOString()});r.followups=r.followupNotes.length;save();renderRecent();renderLists();updateStats();showRepairDetails(r.code)}
 $('closeDetail').onclick=closeDetail;$('detailClose2').onclick=closeDetail;$('detailFollowupAdd').onclick=addDetailFollowup;$('detailEdit').onclick=()=>{const c=$('repairDetailModal').dataset.code;if(c){closeDetail();openEdit(c)}};$('repairDetailModal').addEventListener('click',e=>{if(e.target.id==='repairDetailModal')closeDetail()});$('detailFollowupInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addDetailFollowup()}})
+if(window.DriveSync){
+ document.getElementById('driveConnect')?.addEventListener('click',()=>DriveSync.connected?DriveSync.disconnect():DriveSync.connect());
+ document.getElementById('driveSyncNow')?.addEventListener('click',()=>DriveSync.sync(true));
+ document.getElementById('driveDisconnect')?.addEventListener('click',()=>DriveSync.disconnect());
+ document.getElementById('googleClientId')?.addEventListener('change',e=>localStorage.setItem('zmob_google_client_id',e.target.value.trim()));
+ document.getElementById('googleClientSecret')?.addEventListener('change',e=>localStorage.setItem('zmob_google_client_secret',e.target.value.trim()));
+ const cid=document.getElementById('googleClientId'),cs=document.getElementById('googleClientSecret');if(cid)cid.value=localStorage.getItem('zmob_google_client_id')||'';if(cs)cs.value=localStorage.getItem('zmob_google_client_secret')||'';
+ DriveSync.init();
+}
