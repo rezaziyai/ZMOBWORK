@@ -25,3 +25,5 @@
 .modal-close{width:34px;height:34px;border-radius:9px;background:#f1f5f8;color:#52677d;font-size:21px;line-height:1}.modal-close:hover{background:#e6edf3;color:#162d47}
 .delivery-card{width:min(500px,calc(100vw - 48px));text-align:right}.delivery-actions{display:flex;gap:10px;justify-content:flex-end}.delivery-actions button{min-width:145px}
 @media(max-width:600px){.modal{padding:14px}.modal-card{width:calc(100vw - 28px);max-height:calc(100vh - 28px);padding:16px}.delivery-actions{flex-direction:column}.delivery-actions button{width:100%}}
+
+.delivery-pay{display:flex;align-items:center;gap:8px;margin:8px 0 6px}.delivery-pay input{flex:1;padding:11px 12px;border:1px solid #d5e2ee;border-radius:10px;font:inherit;direction:ltr;text-align:right;outline:none}.delivery-pay input:focus{border-color:#1680f5}.delivery-pay span{color:#66798d;font-size:13px}.delivery-debt-hint{font-size:12px;color:#71849a;margin:4px 0 14px;line-height:1.7}
