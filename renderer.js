@@ -60,9 +60,13 @@ $('saveRepair').onclick=()=>{
 };
 function clearForm(){$('name').value='';$('phone').value='';$('password').value='';$('agreed').value='';$('description').value='';$('ticketNo').textContent=nextCode;fillModels($('brand').value)}
 $('clearForm').onclick=clearForm;
+$('phone').oninput=()=>{const phone=$('phone').value.trim();const old=repairs.slice().reverse().find(x=>x.phone===phone);const hint=$('customerHint');if(old){if(!$('name').value.trim())$('name').value=old.name;hint.textContent='مشتری قبلی: '+old.name+' • '+repairs.filter(x=>x.phone===phone).length+' تعمیر';}else hint.textContent=''};
+document.querySelectorAll('.quick-amounts button').forEach(b=>b.onclick=()=>{$('agreed').value=b.dataset.amount});
+document.querySelectorAll('.quick-issues button').forEach(b=>b.onclick=()=>{const d=$('description');const v=b.dataset.issue;if(!d.value.trim())d.value=v;else if(!d.value.includes(v))d.value+='، '+v;d.focus()});
+
 $('saveNote').onclick=()=>{const v=$('noteInput').value.trim();if(!v)return;notes.push(v);$('noteInput').value='';save();renderNotes()};
 $('repairSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();$('repairList').innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.filter(x=>x.status==='repair'&&JSON.stringify(x).toLowerCase().includes(q)).map(row).join('')};
 $('globalSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();if(!q){go('home');return}go('repair');$('repairSearch').value=q;$('repairSearch').dispatchEvent(new Event('input'))};
-window.addEventListener('keydown',e=>{if(e.key==='F2'){e.preventDefault();go('new')}if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();$('globalSearch').focus()}});
+window.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='Enter'&&!$('view-new').classList.contains('hidden')){$('saveRepair').click();return}if(e.key==='F2'){e.preventDefault();go('new')}if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();$('globalSearch').focus()}});
 function clock(){const d=new Date();$('clock').textContent=d.toLocaleDateString('fa-IR')+'  •  '+d.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});}
 setInterval(clock,1000);clock();initCatalog();clearForm();renderRecent();renderLists();renderNotes();updateStats();
