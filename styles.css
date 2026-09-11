@@ -14,3 +14,5 @@
 .row-action.edit{width:34px;min-width:34px;height:32px;padding:0;font-size:16px;line-height:30px}
 
 .customer-card{max-width:680px}.customer-card .modal-head{margin-bottom:14px}.customer-card .modal-head h2{margin:0 0 3px}.customer-card .modal-head small{color:#71849a}.history-item{display:flex;justify-content:space-between;gap:20px;padding:13px 4px;border-top:1px solid #e5ebf1}.history-item>div{display:flex;align-items:center;gap:10px}.history-item span{color:#304a64}.history-item small{display:block;color:#7b8ea2;font-size:11px}.history-item strong{white-space:nowrap}
+
+.delivery-summary{display:flex;flex-direction:column;gap:8px;background:#f7fbff;border:1px solid #dce7f1;border-radius:10px;padding:14px;margin:10px 0 16px}.delivery-summary span{color:#60758a;font-size:13px}.delivery-summary strong{color:#167cf0;font-size:18px}.delivery-question{color:#52677d;font-size:13px}.delivery-actions{display:flex;gap:9px;justify-content:flex-end}.delivery-card{max-width:500px}@media(max-width:600px){.delivery-actions{flex-direction:column}.delivery-actions button{width:100%}}
