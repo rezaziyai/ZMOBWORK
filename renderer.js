@@ -58,16 +58,17 @@ function money(n){return Number(n||0).toLocaleString('fa-IR')+' تومان'}
 function updateStats(){
  $('repairCount').textContent=repairs.filter(x=>x.status==='repair').length;
  $('doneCount').textContent=repairs.filter(x=>x.status==='done').length;
- $('readyCount').textContent=repairs.filter(x=>x.status==='ready').length;
+ $('deliveredCount').textContent=repairs.filter(x=>x.status==='delivered').length;
  $('customerCount').textContent=new Set(repairs.map(x=>x.phone)).size;
  const n=repairs.filter(x=>(x.followups||0)>0&&x.status!=='delivered').length; $('attentionCount').textContent=n+' مورد';
 }
+function showCustomer(phone){const items=repairs.filter(x=>x.phone===phone).slice().reverse();if(items.length)alert(items.map(x=>'#'+x.code+' | '+x.brand+' • '+x.model+' | '+statusText[x.status]).join('\n'));}
 function row(x){const order=['repair','done','delivered'];const i=order.indexOf(x.status);const next=order[i+1],prev=order[i-1];const action=next?statusText[next]:'';return `<div class="row"><b>#${x.code}</b><span>${x.name}</span><span>${x.brand} • ${x.model}</span><span>${x.problem}</span><span class="badge ${x.status}">${statusText[x.status]}</span><span class="row-actions">${prev?`<button class="row-action back" title="بازگشت" data-code="${x.code}" data-next="${prev}">‹</button>`:''}${next?`<button class="row-action" data-code="${x.code}" data-next="${next}">${action}</button>`:'✓'}</span></div>`}
 function renderRecent(){ $('recent').innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.slice(-7).reverse().map(row).join('') }
 function renderLists(){
  const render=(id,status)=>$(id).innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.filter(x=>x.status===status).map(row).join('');
  render('repairList','repair'); $('doneList').innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.filter(x=>x.status==='done').map(row).join(''); render('deliveredList','delivered');
- $('customerList').innerHTML='<div class="row head"><span>کد</span><span>نام</span><span>شماره</span><span>تعداد تعمیر</span><span></span><span></span></div>'+[...new Map(repairs.map(x=>[x.phone,x])).values()].map(x=>`<div class="row"><b>#${x.code}</b><span>${x.name}</span><span>${x.phone}</span><span>${repairs.filter(y=>y.phone===x.phone).length}</span><span></span><span></span></div>`).join('');
+ $('customerList').innerHTML='<div class="row head"><span>کد</span><span>نام</span><span>شماره</span><span>تعداد تعمیر</span><span></span><span></span></div>'+[...new Map(repairs.map(x=>[x.phone,x])).values()].map(x=>`<div class="row"><b>#${x.code}</b><span>${x.name}</span><span>${x.phone}</span><span>${repairs.filter(y=>y.phone===x.phone).length}</span><span><button class="row-action" data-phone="${x.phone}" data-customer-history="1">سوابق</button></span><span></span></div>`).join('');
 }
 function renderNotes(){ $('notes').innerHTML=notes.slice(-5).reverse().map(n=>`<div class="note">${n}<small> ✓</small></div>`).join('') }
 function go(view){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));$('view-'+view).classList.remove('hidden');document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view!=='new'){renderRecent();renderLists();updateStats()}}
@@ -89,7 +90,7 @@ $('agreed').addEventListener('input',updateAmountHint);$('agreed').addEventListe
 document.querySelectorAll('.quick-issues button').forEach(b=>b.onclick=()=>{const d=$('description');const v=b.dataset.issue;if(!d.value.trim())d.value=v;else if(!d.value.includes(v))d.value+='، '+v;d.focus()});
 
 $('saveNote').onclick=()=>{const v=$('noteInput').value.trim();if(!v)return;notes.push(v);$('noteInput').value='';save();renderNotes()};
-document.addEventListener('click',e=>{const b=e.target.closest('.row-action');if(!b)return;const r=repairs.find(x=>String(x.code)===b.dataset.code);if(!r)return;r.status=b.dataset.next;save();renderRecent();renderLists();updateStats();});
+document.addEventListener('click',e=>{const c=e.target.closest('[data-customer-history]');if(c){showCustomer(c.dataset.phone);return}const b=e.target.closest('.row-action');if(!b)return;const r=repairs.find(x=>String(x.code)===b.dataset.code);if(!r)return;r.status=b.dataset.next;save();renderRecent();renderLists();updateStats();});
 $('repairSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();$('repairList').innerHTML='<div class="row head"><span>#</span><span>مشتری</span><span>مدل</span><span>مشکل</span><span>وضعیت</span><span></span></div>'+repairs.filter(x=>x.status==='repair'&&JSON.stringify(x).toLowerCase().includes(q)).map(row).join('')};
 $('globalSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();if(!q){go('home');return}go('repair');$('repairSearch').value=q;$('repairSearch').dispatchEvent(new Event('input'))};
 window.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='Enter'&&!$('view-new').classList.contains('hidden')){$('saveRepair').click();return}if(e.key==='F2'){e.preventDefault();go('new')}if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();$('globalSearch').focus()}});
