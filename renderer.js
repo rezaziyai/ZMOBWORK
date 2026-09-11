@@ -24,7 +24,28 @@ const catalog={
   Google:['Pixel 10 Pro XL','Pixel 10 Pro','Pixel 10','Pixel 9 Pro XL','Pixel 9 Pro','Pixel 9','Pixel 8 Pro','Pixel 8','Pixel 7 Pro','Pixel 7','Pixel 6 Pro','Pixel 6','Pixel 5'],
   Asus:['ROG Phone 9 Pro','ROG Phone 8 Pro','ROG Phone 7','Zenfone 11 Ultra','Zenfone 10','Zenfone 9'],
   'سایر':['مدل متفرقه / ورود دستی']
-};function initCatalog(){
+};
+const extraCatalog={
+Samsung:['Galaxy A73 5G','Galaxy A72','Galaxy A71','Galaxy A70','Galaxy A52 5G','Galaxy A52 4G','Galaxy A42 5G','Galaxy A41','Galaxy A40','Galaxy A22 5G','Galaxy A22 4G','Galaxy A21','Galaxy A20s','Galaxy A10s','Galaxy A03s','Galaxy A02s','Galaxy A01','Galaxy J7 Prime','Galaxy J7 Pro','Galaxy J7','Galaxy J5 Prime','Galaxy J5','Galaxy J3','Galaxy Grand Prime','Galaxy Grand 2','Galaxy Note 9','Galaxy Note 8','Galaxy Note 5','Galaxy Note 4','Galaxy Note 3','Galaxy S8+','Galaxy S8','Galaxy S7 Edge','Galaxy S7','Galaxy S6 Edge+','Galaxy S6 Edge','Galaxy S6'],
+Apple:['iPhone 17 Air','iPhone 15','iPhone 14','iPhone SE 3','iPhone SE 2','iPhone 13 mini','iPhone 12 mini','iPhone XS','iPhone 8','iPhone 7','iPhone 6s','iPhone 5s'],
+Xiaomi:['Xiaomi 15 Pro','Xiaomi 14T Pro','Xiaomi 14T','Xiaomi 13T Pro','Xiaomi 13T','Xiaomi 12T Pro','Xiaomi 12T','Xiaomi 11T','Mi 11 Ultra','Mi 11 Lite 5G','Mi 10T','Mi 10T Lite','Mi 10 Lite','Mi 9T Pro','Mi 9T','Mi 9 Lite','Mi 8 Lite','Mi A3','Mi A2','Mi A2 Lite','Mi A1'],
+POCO:['POCO F7 Ultra','POCO F7','POCO F6','POCO F5','POCO F4 GT','POCO F3 GT','POCO X7','POCO X6','POCO X5','POCO X4 GT','POCO X3 GT','POCO X3 NFC','POCO X2','POCO M7','POCO M6','POCO M5s','POCO M4 Pro','POCO M3 Pro 5G','POCO M2 Pro','POCO M2','POCO C40','POCO C31'],
+Redmi:['Redmi Note 14 Pro+','Redmi Note 14 Pro','Redmi Note 14','Redmi Note 13 Pro+','Redmi Note 13 Pro','Redmi Note 13','Redmi Note 12S','Redmi Note 11 Pro+','Redmi Note 10S','Redmi Note 10 5G','Redmi Note 9T','Redmi Note 8 Pro','Redmi Note 8','Redmi Note 7','Redmi 13C 5G','Redmi 13C','Redmi 12 5G','Redmi 11 Prime','Redmi 10C','Redmi 9A','Redmi 9C','Redmi 9AT','Redmi 8A','Redmi 7A','Redmi 6A','Redmi 5 Plus','Redmi 5A','Redmi 4X'],
+Huawei:['Mate X3','Mate X2','Mate 50','Mate 40','Mate 30','Mate 20','Mate 10','Pura 70 Pro','Pura 70','P60','P50','P40','P30 Lite','P20 Lite','P10 Plus','P10','Nova 12','Nova 11','Nova 10','Nova 9 SE','Nova 8','Nova 7','Nova 6','Y9 Prime 2019','Y9s','Y8p','Y8s','Y7p','Y6s','Y6 2018','Y5p'],
+Honor:['Magic7 RSR','Magic6 RSR','Magic V3','Magic V2 RSR','Magic Vs','Magic Vs2','Magic4 Lite','Honor 200 Lite','Honor 100 Pro','Honor 100','Honor 90 Pro','Honor 90 Smart','Honor 80 Pro','Honor 80','Honor 70 Lite','Honor 50 Lite','X9c','X9b','X8c','X8','X7c','X7','X6b','X6','X5b','X5 Plus','Play 8T','Play 7T'],
+Oppo:['Find X8','Find X7','Find X5','Find X3','Find X2 Pro','Reno 13','Reno 12','Reno 11','Reno 10','Reno 8T','Reno 7Z','Reno 6','Reno 5','Reno 4','A98 5G','A96','A95','A94','A92','A91','A74','A73','A57 4G','A53','A52','A31','A16K'],
+Vivo:['X200','X100','X90','X80','X70','X60','X50','X30','V40','V30','V29e','V27e','V25e','V23e','V21e','V20','V19','Y200e','Y100i','Y36 5G','Y35 5G','Y33s','Y31','Y30','Y20s','Y17','Y15','Y12','Y11'],
+Realme:['GT 7','GT 6T','GT 5','GT Neo 6 SE','GT Neo 5 SE','GT 3','GT 2 Master','12 Pro','12+ 5G','11 Pro','11','10','9i','9 5G','8i','8 5G','7i','6i','C75x','C65','C55 NFC','C35','C25Y','C21','C20'],
+Motorola:['Edge 60 Fusion','Edge 60','Edge 50 Ultra','Edge 50 Neo','Edge 30 Pro','Edge 30 Fusion','Edge 30 Neo','Moto G75','Moto G55','Moto G45','Moto G35','Moto G24','Moto G23','Moto G22','Moto G20','Moto E40','Moto E32','Moto E22','Moto E20'],
+Nokia:['Nokia 6310','Nokia 2660 Flip','Nokia 8210 4G','Nokia 3310 4G','Nokia C32','Nokia C31','Nokia C22','Nokia C21 Plus','Nokia 5.3','Nokia 4.2','Nokia 3.2','Nokia 2.3','Nokia 1.4'],
+Tecno:['Phantom V Fold2','Phantom V Flip2','Phantom X2 Pro','Phantom X2','Camon 40','Camon 30 Premier','Camon 20 Premier','Camon 19 Pro','Camon 18 Premier','Spark 30','Spark 20C','Spark 10','Spark 9','Spark 8','Pova 6','Pova 6 Neo','Pova 4','Pova 3','Pova 2'],
+Infinix:['Note 50 Pro','Note 50','Note 40','Note 30 VIP','Note 30 Pro','Note 12 Pro','Note 11 Pro','Hot 50','Hot 50i','Hot 40i','Hot 30i','Hot 20','Hot 12','Hot 11','Zero 40','Zero 30 5G','Zero 20','Zero X Pro','GT 30 Pro','GT 20 Pro'],
+Sony:['Xperia 1 VII','Xperia 1 V','Xperia 1 III','Xperia 5 II','Xperia 5 III','Xperia 5 IV','Xperia 10 II','Xperia 10 III','Xperia 10 IV','Xperia 10 V','Xperia L4','Xperia L3'],
+Google:['Pixel 10 Pro Fold','Pixel 9 Pro Fold','Pixel 8a','Pixel 7a','Pixel 6a','Pixel 5a','Pixel 4a','Pixel 4 XL','Pixel 4','Pixel 3a XL','Pixel 3a','Pixel 3 XL','Pixel 3'],
+Asus:['ROG Phone 9','ROG Phone 8','ROG Phone 7 Ultimate','ROG Phone 6','ROG Phone 5','Zenfone 11','Zenfone 10','Zenfone 9','Zenfone 8','Zenfone 7 Pro','Zenfone 6']
+};
+Object.keys(extraCatalog).forEach(b=>{catalog[b]=[...new Set([...(catalog[b]||[]),...extraCatalog[b]])]});
+function initCatalog(){
  const brand=$('brand'); brand.innerHTML=''; Object.keys(catalog).forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;brand.appendChild(o)});
  brand.onchange=()=>fillModels(brand.value); fillModels(brand.value);
 }
@@ -55,13 +76,16 @@ document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{document.querySel
 $('saveRepair').onclick=()=>{
  const name=$('name').value.trim(),phone=$('phone').value.trim(),model=$('model').value.trim();
  if(!name||!phone||!model){alert('نام، شماره تماس و مدل را وارد کنید.');return}
- const r={code:nextCode++,name,phone,brand:$('brand').value,model,problem:problemType==='software'?'نرم‌افزار':problemType==='both'?'هر دو':'سخت‌افزار',password:$('password').value,agreed:$('agreed').value,description:$('description').value,status:'repair',followups:0,created:new Date().toISOString()};
+ const agreed=parseAmount($('agreed').value); const r={code:nextCode++,name,phone,brand:$('brand').value,model,problem:problemType==='software'?'نرم‌افزار':problemType==='both'?'هر دو':'سخت‌افزار',password:$('password').value,agreed,description:$('description').value,status:'repair',followups:0,created:new Date().toISOString()};
  repairs.push(r);save();alert('گوشی با کد '+r.code+' ثبت شد.');clearForm();go('home');
 };
-function clearForm(){$('name').value='';$('phone').value='';$('password').value='';$('agreed').value='';$('description').value='';$('ticketNo').textContent=nextCode;fillModels($('brand').value)}
+function clearForm(){$('name').value='';$('phone').value='';$('password').value='';$('agreed').value='';$('description').value='';$('ticketNo').textContent=nextCode;fillModels($('brand').value);updateAmountHint()}
 $('clearForm').onclick=clearForm;
 $('phone').oninput=()=>{const phone=$('phone').value.trim();const old=repairs.slice().reverse().find(x=>x.phone===phone);const hint=$('customerHint');if(old){if(!$('name').value.trim())$('name').value=old.name;hint.textContent='مشتری قبلی: '+old.name+' • '+repairs.filter(x=>x.phone===phone).length+' تعمیر';}else hint.textContent=''};
-document.querySelectorAll('.quick-amounts button').forEach(b=>b.onclick=()=>{$('agreed').value=b.dataset.amount});
+document.querySelectorAll('.quick-amounts button').forEach(b=>b.onclick=()=>{const v=Number(b.dataset.amount);$('agreed').value=v.toLocaleString('en-US');updateAmountHint()});
+function parseAmount(v){v=String(v||'').replace(/,/g,'').trim();if(!v||Number(v)===0)return null;const n=Number(v);if(!Number.isFinite(n)||n<0)return null;return n<1000&&v.includes('.')?Math.round(n*1000000):n<1000?Math.round(n*1000):Math.round(n)}
+function updateAmountHint(){const raw=$('agreed').value;const n=parseAmount(raw);$('amountHint').textContent=n===null?'هزینه هنوز هماهنگ نشده':'مبلغ: '+n.toLocaleString('fa-IR')+' تومان'}
+$('agreed').addEventListener('input',updateAmountHint);$('agreed').addEventListener('blur',()=>{const n=parseAmount($('agreed').value);$('agreed').value=n===null?'':n.toLocaleString('en-US');updateAmountHint()});
 document.querySelectorAll('.quick-issues button').forEach(b=>b.onclick=()=>{const d=$('description');const v=b.dataset.issue;if(!d.value.trim())d.value=v;else if(!d.value.includes(v))d.value+='، '+v;d.focus()});
 
 $('saveNote').onclick=()=>{const v=$('noteInput').value.trim();if(!v)return;notes.push(v);$('noteInput').value='';save();renderNotes()};
